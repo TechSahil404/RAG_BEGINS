@@ -1,0 +1,74 @@
+SUMMARY 
+Passionate about Artificial Intelligence and Machine Learning with a strong focus on Generative AI applications, 
+including RAG systems, intelligent agents, and Langhian. Skilled in Prompt Engineering, Deep Learning (CNN, 
+RNN, ANN, LSTM), and Python for building innovative AI-driven solutions. 
+ 
+EDUCATION 
+University of Engineering & Management Jaipur 
+• B.Tech - Computer Science and Engineering; CGPA: 7.5 
+• Specialization in Artificial Intelligence & Machine Learning 
+        2022 – 2026 
+Higher Secondary Education 
+• Rajni Public Sr Sec School, Chomu (RBSE - 70%) 
+                   APR 
+2022 
+Secondary Education 
+• Adarsh Vidhya Mandir ,Dhawali (RBSE - 73.50%) 
+                  MAR 
+2020 
+Rajasthan State Certificate in Information Technology 
+• Vardhman Mahaveer Open University, Kota (RS-CIT – 75%) 
+                  MAR 
+2020 
+ 
+EXPERIENCE 
+Tata Group Data Analytics Job Simulation on Forage 
+• Designed an AI-driven collections strategy leveraging agentic AI and 
+automation. 
+• Conducted exploratory data analysis (EDA) using GenAI tools to assess data 
+quality, identify risk indicators, and structure insights for predictive modeling 
+      AUG 2025 
+Tech Team Member 
+E-CELL 
+• Organized 5 entrepreneurship events, driving student engagement, speaker 
+coordination, and event logistics to foster innovation and startup culture 
+        0CT 2024 
+ 
+PROJECTS 
+HealthCare Chatbot System 
+• Developed a responsive Al-powered chatbot using Python, Flask, and NLP 
+techniques to provide instant medical guidance for 20+ diseases, featuring a user
+friendly HTML/CSS Interface 
+JAN 24 
+WhatsApp Chat Analyzer 
+• Developed an interactive web app to analyze WhatsApp chat data, providing 
+insights on message statistics, activity patterns, busiest periods, top contributors, 
+emoji usage, and sentiment analysis. 
+• Implemented data visualization using Python and NLP techniques for enhanced 
+user behavior understanding and automated chat insights. 
+FEB 25 
+RAG - based Chatbot System JUNE 25 
+   
+ 
+   
+ 
+• Developed an intelligent document-aware assistant using Retrieval-Augmented 
+Generation (RAG) that processes PDF/TXT files, generates concise summaries, and 
+answers context-based questions 
+• Optimized performance using a lightweight open-source Falcon-7B model, 
+ensuring offline functionality with efficient memory utilizatio 
+SKILLS 
+ 
+ 
+Programming & Data 
+Science: 
+ Python,C,java , Deep Learning (CNN, RNN, ANN), LSTM, Langchain ,LLM, 
+NLP ,Transformers 
+Tools/Technologies: GitHub, n8n workflow, Zapier, Google Collab, Ollama 
+GenAi: LangChain, Agents, Prompt Engg, Vector DB 
+Core Concepts: DSA, OS, CN, DBMS, LLMs 
+Libraries: Pandas, NumPy, Matplotlib, Streamlit 
+ 
+CERTIFICATIONS/COURSES 
+Coursera: Programming for everybody ( Getting started with Python), Introduction to NLP and Syntactic 
+Processing, Introduction to Deep Learning & Neural Networks. with Keras

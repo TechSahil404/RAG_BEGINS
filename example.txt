@@ -1,0 +1,75 @@
+Sahil Kumawat 
+• • +91 8690543737 
+ 
+Tech Team Member 
+E- CEL L
+ WhatsApp Chat Analyzer 
+• 
+ 
+PROJECTS 
+HealthCare Chatbot System 
+• 
+RAG - based Chatbot System 
+sahilkumawat613@gmail.com linkedin.com/LinkedIn/sahil 
+JAN 24 
+FEB 25 
+JUNE 25 
+0CT 2024 
+ 
+Programming & Data 
+Science: 
+Tools/Technologies: 
+GenAi: 
+Core Concepts: 
+Libraries: 
+Python,C,java , 
+GitHub, n8n workflow, Zapier, Google Collab, Ollama 
+LangChain, Agents, Prompt Engg, Vector DB 
+DSA, OS, CN, DBMS, LLMs 
+Pandas, NumPy, Matplotlib, Streamlit 
+CERTIFICATIONS/COURSES 
+Coursera: Programming for everybody ( Getting started with Python), Introduction to NLP and Syntactic 
+Processing, Introduction to Deep Learning & Neural Networks. with Keras 
+ 
+Passionate about Artificial Intelligence and Machine Learning with a strong focus on Generative AI applications, 
+including RAG systems, intelligent agents, and Langhian. Skilled in Prompt Engineering, Deep Learning (CNN, 
+RNN, ANN, LSTM), and Python for building innovative AI-driven solutions. 
+EDUCATION 
+University of Engineering & Management Jaipur 2022 – 2026 
+• B.Tech - Computer Science and Engineering; CGPA: 7.5
+ • Specialization in Artificial Intelligence & Machine Learning 
+Higher Secondary Education APR 
+MAR 
+MAR 
+• Rajni Public Sr Sec School, Chomu (RBSE - 70%) 
+2022 
+2020
+ 2020 
+Secondary Education 
+• Adarsh Vidhya Mandir ,Dhawali (RBSE - 73.50%) 
+Rajasthan State Certificate in Information Technology 
+• Vardhman Mahaveer Open University, Kota (RS-CIT – 75%) 
+EXPERIENCE 
+Tata Group Data Analytics Job Simulation on Forage AUG 2025 
+SUMMARY
+ Designed an AI-driven collections strategy leveraging agentic AI and 
+automation.
+ Conducted exploratory data analysis (EDA) using GenAI tools to assess data 
+quality,identify risk indicators, and structure insights for predictive modeling 
+Organized 5 entrepreneurship events, driving student engagement, speaker 
+coordination, and event logistics to foster innovation and startup culture 
+Developed a responsive Al-powered chatbot using Python, Flask, and NLP
+ techniques to provide instant medical guidance for 20+ diseases, featuring a user
+friendly HTML/CSS Interface 
+Developed an interactive web app to analyze WhatsApp chat data, providing 
+insights on message statistics, activity patterns, busiest periods, top contributors, 
+emoji usage, and sentiment analysis. 
+Implemented data visualization using Python and NLP techniques for enhanced 
+user behavior understanding and automated chat insights. 
+• Developed an intelligent document-awareassistant using Retrieval-Augmented
+ Generation (RAG) that processes PDF/TXTfiles, generates concise summaries, and
+ answers context-based questions 
+• Optimized performance using a lightweightopen-source Falcon-7B model, 
+ensuring offline functionality with efficientmemory utilizatio 
+SKILLS 
+Deep Learning(CNN,RNN, ANN),LSTM, Langchain ,LLM
