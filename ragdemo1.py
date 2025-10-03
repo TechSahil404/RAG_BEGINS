@@ -1,9 +1,4 @@
-# ------------------ REQUIREMENTS ------------------
-# pip install langchain langchain-community transformers sentence-transformers faiss-cpu streamlit unstructured PyMuPDF python-docx python-pptx pdfplumber pytesseract pillow pdf2image
-# Note: pdf2image requires poppler installed on system (apt-get install poppler-utils on Debian/Ubuntu).
-# Tesseract OCR: install system package (apt-get install tesseract-ocr) for pytesseract to work.
-
-# ------------------ APP CODE (single-file) ------------------
+ 
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -12,7 +7,7 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 from langchain_community.document_loaders import UnstructuredPDFLoader
 from langchain_community.document_loaders import PyMuPDFLoader
 
-# optional loaders (use if available)
+
 try:
     from langchain_community.document_loaders import PDFPlumberLoader
 except Exception:
@@ -28,7 +23,7 @@ try:
 except Exception:
     PptxLoader = None
 
-# HuggingFacePipeline wrapper from community
+
 from langchain_community.llms.huggingface_pipeline import HuggingFacePipeline
 
 # OCR
