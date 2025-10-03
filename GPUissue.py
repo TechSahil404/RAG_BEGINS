@@ -3,15 +3,15 @@ import tempfile
 import streamlit as st
 from dotenv import load_dotenv
 
-# ---------------- Safe Chroma import (no crash) ----------------
+
 try:
-    from langchain_chroma import Chroma  # preferred; pip install -U langchain-chroma chromadb
+    from langchain_chroma import Chroma 
     _CHROMA_IMPORT = "new"
 except Exception:
-    from langchain_community.vectorstores import Chroma  # fallback; pip install -U langchain-community chromadb
+    from langchain_community.vectorstores import Chroma  
     _CHROMA_IMPORT = "community"
 
-# ---------------- LangChain imports ----------------
+
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
@@ -21,10 +21,10 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_groq import ChatGroq
 from langchain.memory import ConversationBufferMemory
 
-# ---------------- Load .env ----------------
+
 load_dotenv()
 
-# ---------------- Streamlit UI ----------------
+
 st.set_page_config(page_title="📄 Chat With Documents", layout="wide")
 st.title("📄 Chat With Documents — RAG SYSTEM (Strict Mode ✅)")
 

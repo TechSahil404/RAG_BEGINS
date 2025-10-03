@@ -5,13 +5,13 @@ import time
 import streamlit as st
 from dotenv import load_dotenv
 
-# ---------------- Safe Chroma import ----------------
+# Chroma 
 try:
     from langchain_chroma import Chroma 
 except Exception:
     from langchain_community.vectorstores import Chroma  
 
-# ---------------- LangChain imports ----------------
+# LangChain imports 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
@@ -21,23 +21,23 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_groq import ChatGroq
 from langchain.memory import ConversationBufferMemory
 
-# ---------------- Load .env ----------------
+# .env
 load_dotenv()
 
-# ---------------- Streamlit UI ----------------
+# Streamlit UI 
 st.set_page_config(page_title="📄 Chat With Documents", layout="wide")
 st.title("📄 Chat With Documents — RAG SYSTEM (Strict Mode ✅)")
 
 st.sidebar.header("⚙️ Configuration")
 st.sidebar.write("- Enter your Groq API key\n- Upload PDF(s)\n- Ask questions about the documents")
 
-# ---------------- API key handling ----------------
+# API key handling 
 api_key = st.sidebar.text_input("Enter your Groq API Key", type="password") or os.getenv("GROQ_API_KEY", "")
 if not api_key:
     st.warning("⚠️ Please enter your Groq API key in sidebar or set GROQ_API_KEY in .env")
     st.stop()
 
-# ---------------- Initialize Embeddings and LLM ----------------
+# Initialize Embeddings and LLM 
 os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN", "")
 
 embeddings = HuggingFaceEmbeddings(
@@ -47,7 +47,7 @@ embeddings = HuggingFaceEmbeddings(
 
 llm = ChatGroq(api_key=api_key, model="gemma2-9b-it")
 
-# ---------------- Session-scoped Chroma config ----------------
+# Session-scoped Chroma config 
 BASE_PERSIST_ROOT = "chroma_sessions"   # root for all sessions
 SESSION_TS = str(int(time.time()))      # unique per run
 PERSIST_DIR = os.path.join(BASE_PERSIST_ROOT, SESSION_TS)

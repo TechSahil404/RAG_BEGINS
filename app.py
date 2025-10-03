@@ -12,19 +12,15 @@ from langchain.vectorstores import FAISS
 from langchain.docstore.document import Document
 from langchain_huggingface import HuggingFaceEmbeddings
 
-# -------------------------
-# Gemini Setup
-# -------------------------
-API_KEY = "AIzaSyBIiJbgGDi29cAtJhpJW9wc6DX98IiLo4s"  # 👈 apna key daal
+
+API_KEY = "AIzaSyBIiJbgGDi29cAtJhpJW9wc6DX98IiLo4s" 
 genai.configure(api_key=API_KEY)
 
 EMBED_MODEL = "models/embedding-001"
 LLM_MODEL = "gemini-1.5-flash"
 
 
-# -------------------------
-# Extractors
-# -------------------------
+
 def extract_text_from_pdf(file_path):
     texts = []
     with pdfplumber.open(file_path) as pdf:
@@ -51,10 +47,7 @@ def extract_text_from_image(file_path):
     text = pytesseract.image_to_string(img)
     return [text] if text else []
 
-
-# -------------------------
-# Gemini Embedding
-# -------------------------
+ 
 def embed_texts_gemini(texts, embedding_model=EMBED_MODEL):
     embeddings = []
     for t in texts:
@@ -65,24 +58,16 @@ def embed_texts_gemini(texts, embedding_model=EMBED_MODEL):
         embeddings.append((t, emb))
     return embeddings
 
-
-# -------------------------
-# Build Vector DB
-# -------------------------
+ 
 def build_vectorstore(texts):
     pairs = embed_texts_gemini(texts)
-
-    # LangChain FAISS store (dummy HuggingFace embeddings for structure)
+  
     emb_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
     docs = [Document(page_content=t[0]) for t in pairs]
     vectors = FAISS.from_documents(docs, emb_model)
     return vectors
-
-
-# -------------------------
-# Gemini QA
-# -------------------------
+ 
 def gemini_answer(context, query):
     prompt = f"Context:\n{context}\n\nQuestion: {query}\nAnswer:"
     model = genai.GenerativeModel(LLM_MODEL)
@@ -90,9 +75,7 @@ def gemini_answer(context, query):
     return resp.text
 
 
-# -------------------------
-# Streamlit UI
-# -------------------------
+
 st.set_page_config(page_title="Universal RAG System", layout="wide")
 
 st.title("📚 Universal RAG System (Text + Table + Image) with Gemini")

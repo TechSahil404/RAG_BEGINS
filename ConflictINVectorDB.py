@@ -3,7 +3,7 @@ import tempfile
 import streamlit as st
 from dotenv import load_dotenv
 
-# ---------------- LangChain imports ----------------
+
 from langchain_core.prompts import PromptTemplate
 from langchain.chains import ConversationalRetrievalChain
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -13,21 +13,21 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_groq import ChatGroq
 from langchain.memory import ConversationBufferMemory
 
-# ---------------- Load .env ----------------
+
 load_dotenv()
 
-# ---------------- Streamlit UI ----------------
-st.set_page_config(page_title="📄 Chat With Documents", layout="wide")
-st.title("📄 Chat With Documents — RAG SYSTEM (Strict Mode ✅)")
 
-st.sidebar.header("⚙️ Configuration")
+st.set_page_config(page_title="📄 Chat With Documents", layout="wide")
+st.title("📄 Chat With Documents — RAG SYSTEM (Strict Mode )")
+
+st.sidebar.header("Configuration")
 st.sidebar.write(
     "- Enter your Groq API key\n"
     "- Upload PDF(s)\n"
     "- Ask questions about the documents"
 )
 
-# ---------------- API key handling ----------------
+
 api_key = st.sidebar.text_input("Enter your Groq API Key", type="password")
 if not api_key:
     api_key = os.getenv("GROQ_API_KEY", "")
@@ -36,18 +36,18 @@ if not api_key:
     st.warning("⚠️ Please enter your Groq API key in sidebar or set GROQ_API_KEY in .env")
     st.stop()
 
-# ---------------- Initialize Embeddings and LLM ----------------
+
 os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN", "")
 
-# ✅ Fixed: Force embeddings to CPU
+
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2",
-    model_kwargs={"device": "cpu"}  # Force CPU
+    model_kwargs={"device": "cpu"}  
 )
 
 llm = ChatGroq(api_key=api_key, model="gemma2-9b-it")
 
-# ---------------- File Upload ----------------
+
 uploaded_files = st.file_uploader("📎 Upload PDF file(s)", type="pdf", accept_multiple_files=True)
 all_docs = []
 
@@ -64,42 +64,42 @@ if uploaded_files:
 
     st.success(f"✅ Loaded {len(all_docs)} pages from {len(uploaded_files)} document(s).")
 
-    # ---------------- Split documents ----------------
+    
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
         chunk_overlap=200,
         separators=["\n\n", "\n", " "]
     )
     chunks = splitter.split_documents(all_docs)
-    st.info(f"🧠 Total chunks created: {len(chunks)}")
+    st.info(f"Total chunks created: {len(chunks)}")
 
-    # ---------------- Vector Store ----------------
+    
     vectordb = Chroma.from_documents(
         documents=chunks,
         embedding=embeddings,
         persist_directory="chroma_db"
     )
     vectordb.persist()
-    st.success("📌 Vector store ready.")
+    st.success("Vector store ready.")
 
-    # ---------------- Retriever (Strict) ----------------
+    
     retriever = vectordb.as_retriever(search_kwargs={"k": 4})
 
-    # ---------------- Memory ----------------
+    
     memory = ConversationBufferMemory(
         memory_key="chat_history",
         return_messages=True,
         output_key="answer"
     )
 
-    # ---------------- Strict Prompt ----------------
+    
     STRICT_PROMPT = """You are a strict document-based assistant.
 Use ONLY the provided context to answer the question.
 If the answer is not present in the context, reply exactly:
 "No information found in the documents."
 """
 
-    # ---------------- Conversational Retrieval Chain ----------------
+    
     qa_chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
         retriever=retriever,
@@ -108,11 +108,11 @@ If the answer is not present in the context, reply exactly:
         verbose=False
     )
 
-    # ---------------- User Query ----------------
+    
     user_question = st.text_input("💬 Ask a question about the document(s):")
 
     if st.button("Get Answer") and user_question.strip():
-        # Inject strict prompt manually before query
+        
         strict_question = f"{STRICT_PROMPT}\nQuestion: {user_question}"
         result = qa_chain({"question": strict_question, "chat_history": memory.chat_memory})
         answer = result.get("answer")

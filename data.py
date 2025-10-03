@@ -6,27 +6,24 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 from langchain_community.llms.huggingface_pipeline import HuggingFacePipeline
 import streamlit as st
 
-#------------------------------------------
-# Text Loader
+
 loader = TextLoader("example2.txt", encoding="utf-8")
 docs = loader.load()
 print(docs[0].page_content)
 
-#------------------------------------------
-# Chunking
+
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=50, separators="\n")
 chunks = text_splitter.split_documents(docs)
 for i, chunk in enumerate(chunks):
     print(f"Chunk {i} size: {len(chunk.page_content)}")
     print(chunk.page_content)
 
-#------------------------------------------
-# Embeddings
+
 embeddings_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
 vector_store = FAISS.from_documents(documents=chunks, embedding=embeddings_model)
 
-#------------------------------------------
-# CPU-friendly LLM
+
+# CPU LLM
 model_name = "google/flan-t5-small"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
@@ -38,12 +35,12 @@ pipe = pipeline(
 )
 llm = HuggingFacePipeline(pipeline=pipe)
 
-#------------------------------------------
-# Streamlit App
-st.set_page_config(page_title="Simple RAG Demo", layout="centered")
-st.title("📚 Simple RAG Demo")
 
-query = st.text_input("❓ Enter your question:")
+# Streamlit 
+st.set_page_config(page_title="Simple RAG Demo", layout="centered")
+st.title(" Simple RAG Demo")
+
+query = st.text_input("Enter your question:")
 
 if st.button("Submit"):
     if query.strip():

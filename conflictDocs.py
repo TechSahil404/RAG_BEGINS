@@ -3,7 +3,7 @@ import tempfile
 import streamlit as st
 from dotenv import load_dotenv
 
-# ---------------- LangChain imports ----------------
+
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder, HumanMessagePromptTemplate
 from langchain_groq import ChatGroq
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -19,8 +19,7 @@ import pytesseract
 
 # Load environment variables
 load_dotenv()
-
-# ---------------- Streamlit UI ----------------
+ 
 st.set_page_config(page_title="📄 RAG System", layout="wide")
 st.title("📄 Chat With Documents — RAG SYSTEM (Supports Text + Scanned PDFs)")
 
@@ -42,13 +41,12 @@ if not api_key:
     st.warning("Please enter your Groq API key in sidebar or set GROQ_API_KEY in .env")
     st.stop()
 
-# ---------------- Initialize Models ----------------
-# Groq LLM
+
 llm = ChatGroq(api_key=api_key, model="gemma2-9b-it")
 # HuggingFace embeddings
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
-# ---------------- File Upload ----------------
+
 uploaded_files = st.file_uploader("Upload PDF file(s)", type="pdf", accept_multiple_files=True)
 all_docs = []
 
@@ -67,7 +65,7 @@ if uploaded_files:
             tmp.write(uploaded.getbuffer())
             tmp_path = tmp.name
 
-        # Try normal PDF loader first
+        
         loader = PyPDFLoader(tmp_path)
         docs = loader.load()
         
@@ -82,7 +80,7 @@ if uploaded_files:
 
     st.success(f"Loaded {len(all_docs)} pages from {len(uploaded_files)} document(s).")
 
-    # ---------------- Text Splitting ----------------
+    
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
         chunk_overlap=200,
@@ -91,20 +89,20 @@ if uploaded_files:
     chunks = splitter.split_documents(all_docs)
     st.info(f"Total chunks created: {len(chunks)}")
 
-    # ---------------- Vector Store ----------------
+    
     persist_dir = "chroma_db"
     vectordb = Chroma.from_documents(documents=chunks, embedding=embeddings, persist_directory=persist_dir)
     vectordb.persist()
     st.success("Vector store ready.")
 
-    # ---------------- Memory ----------------
+    
     memory = ConversationBufferMemory(
         memory_key="chat_history",
         return_messages=True,
         output_key="answer"
     )
 
-    # ---------------- Build QA Chain ----------------
+    
     qa_chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
         retriever=vectordb.as_retriever(),
@@ -112,7 +110,7 @@ if uploaded_files:
         return_source_documents=True
     )
 
-    # ---------------- User Query ----------------
+    
     user_question = st.text_input("Ask a question about the document(s):")
 
     if st.button("Get Answer") and user_question.strip():
